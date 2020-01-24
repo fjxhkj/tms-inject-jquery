@@ -1,43 +1,39 @@
 // ==UserScript==
 // @name        tms-inject-jquery
-// @namespace   Goldrobot.org
+// @version     1.0.5
+// @namespace   https://github.com/fjxhkj/tms-inject-jquery
+// @description 为页面注入jQuery引用节点,便于使用控制台调试jQuery选择器等.
+// @license     Apache License 2.0
+// @supportURL  https://github.com/fjxhkj/tms-inject-jquery
 // @match       *
 // @include     *
-// @require      http://lib.sinaapp.com/js/jquery/1.12.4/jquery-1.12.4.min.js
-// Use your own jquery script and remember to open the tm plugin to access local files
-// @require2      file://d:\js\jquery\jquery-1.12.4.min.js
-// @grant        unsafeWindow
-// run-at: document-end, start
-// @run-at       document-end
+// @grant       unsafeWindow
+// @run-at      document-end
 // ==/UserScript==
 
 (function() {
-	'use strict';
+    'use strict';
+    
+    injectJqueryNode();
+    var myReloader = setInterval(function() {
+        testJq();
+    }, 100);
 
-	function log(aItem) {
-		console.dir(aItem);
-	}
+    function injectJqueryNode() {
+        if (! testJq()) {
+            var node = document.createElement('script');
+            node.setAttribute("src", "https://code.jquery.com/jquery-1.12.4.js");
+            document.body.appendChild(node);
+        }
+    }
 
-	var $ = $ || window.$;
-	if (typeof $ === 'undefined') {
-		log('Unable to import jQuery library');
-		return null;
-	}
-
-	var myReloader = setInterval(function () {
-		// console.clear();
-		main();
-	}, 5000);
-
-	function injectJqueryNode(){
-		var n = $('<script></script>').attr('src', 'http://lib.sinaapp.com/js/jquery/1.12.4/jquery-1.12.4.min.js');
-		$('body').after(n);
-		log('jQuery is arrived!');
-	}
-
-	function main() {
-		injectJqueryNode();
-		clearInterval(myReloader);
-	}
+    function testJq() {
+        if ((typeof $) === 'undefined') {
+            return false;
+        }
+        console.log("tms-inject-jquery: jQuery", $.fn.jquery, "arrived!");
+        clearInterval(myReloader);
+        return true;
+    }
 
 })();
