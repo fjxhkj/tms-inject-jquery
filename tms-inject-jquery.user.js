@@ -4,7 +4,7 @@
 // @namespace   https://github.com/fjxhkj/tms-inject-jquery
 // @description 为页面注入jQuery引用节点,便于使用控制台调试jQuery选择器等.
 // @license     Apache License 2.0
-// @supportURL  https://github.com/fjxhkj/tms-inject-jquery
+// @supportURL  https://greasyfork.org/zh-CN/scripts/395669-inject-jquery
 // @match       *
 // @include     *
 // @grant       unsafeWindow
