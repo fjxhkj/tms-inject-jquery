@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        tms-inject-jquery
-// @version     1.0.11
+// @version     1.0.13
 // @description 为页面注入jQuery引用节点,便于使用控制台调试jQuery选择器等.
 // @license     MIT
 // @namespace   https://github.com/fjxhkj/tms-inject-jquery
@@ -12,12 +12,18 @@
 
 (function() {
   'use strict';
-
+  console.log('check jquery');
   waitForEl('body', function() {
     if ((typeof $) === 'undefined') {
+      var scheme = window.location.protocol;
       var node = document.createElement('script');
-      node.setAttribute('src', 'http://cdn.staticfile.org/jquery/1.12.4/jquery.min.js');
+      node.setAttribute('src',
+           scheme + '//cdn.staticfile.org/jquery/1.12.4/jquery.min.js');
       document.body.appendChild(node);
+      console.log('jQuery v1.12.4 append!');
+    }
+    else {
+      console.log('jQuery already exists, ver: ' + $.fn.jquery);
     }
   }, 3000);
 
