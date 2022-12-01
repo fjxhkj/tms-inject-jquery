@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        tms-inject-jquery
-// @version     1.0.8
+// @version     1.0.9
 // @description 为页面注入jQuery引用节点,便于使用控制台调试jQuery选择器等.
 // @license     MIT
 // @namespace   https://github.com/fjxhkj/tms-inject-jquery
