@@ -7,7 +7,6 @@
 // @supportURL  https://github.com/fjxhkj/tms-inject-jquery
 // @updateURL   https://greasyfork.org/zh-CN/scripts/395669-tms-inject-jquery
 // @match       *://*/*
-// @grant       unsafeWindow
 // @run-at      document-end
 // ==/UserScript==
 
